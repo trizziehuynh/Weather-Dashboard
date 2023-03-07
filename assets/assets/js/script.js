@@ -5,7 +5,7 @@ document
     var cityName = document.getElementById("cityName").value;
     // get data from the API Weather
     var APIKey = "a68815855e046aa6fc830d61874f7c39";
-    var APIUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${APIKey}`;
+    var APIUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${APIKey}`;
 
     fetch(APIUrl)
       .then(function (res) {
@@ -20,7 +20,7 @@ document
         fiveDaysTemp(weatherData);
 
         fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIKey}`
+          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${APIKey}`
         )
           .then(function (resp) {
             return resp.json();
@@ -46,14 +46,14 @@ document
 function displayTemp(data) {
   var date = new Date();
   var temp = document.createElement("div");
-  temp.className = "row gy-2";
+  temp.className = "row col-3 gy-2";
   temp.innerHTML = `<div class="card" style="width: 18rem;">
           <div class="card-body">
             <h5 id="city" class="card-title">${data.name}</h5>
             <h6 id="date"class="card-subtitle mb-2 text-muted">${date}</h6>
             <img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png">
             </p>
-            <p id="temperature" class="card-text">The temperature : ${data.main.temp}
+            <p id="temperature" class="card-text">The temperature : ${data.main.temp} °F
             </p>
             <p id="humidity" class="card-text">The humidity : ${data.main.humidity}
             </p>
@@ -61,6 +61,10 @@ function displayTemp(data) {
             </p>
   `;
   document.getElementById("displayCard").append(temp);
+
+  document
+    .getElementById("displayCard")
+    .after(document.getElementById("fiveDays"));
 }
 
 // Render the forecast for the next 5 days
@@ -112,14 +116,14 @@ function fiveDaysTemp(weatherData) {
 
   fiveDays.forEach(function (day) {
     var tempFiveDays = document.createElement("div");
-    tempFiveDays.className = "row gy-2";
+    tempFiveDays.className = "row col-2 gy-2";
     tempFiveDays.innerHTML = `<div class="card" style="width: 18rem;">
           <div class="card-body">
             <h5 id="city" class="card-title">${day.city}</h5>
             <h6 id="date"class="card-subtitle mb-2 text-muted">${day.date}</h6>
             <img src="https://openweathermap.org/img/w/${day.img}.png">
             </p>
-            <p id="temperature" class="card-text">The temperature : ${day.temp}
+            <p id="temperature" class="card-text">The temperature : ${day.temp} °F
             </p>
             <p id="humidity" class="card-text">The humidity : ${day.humidity}
             </p>
