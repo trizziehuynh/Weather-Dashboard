@@ -22,7 +22,15 @@
           <div class="search">
             <i class="fa fa-search"></i>
             <input id='cityName' type="text" class="form-control" placeholder="City Name">
-            <div class="list-group" id="history"></div>
+            <div class="list-group" id="history">
+              <div class="card" style="width: 18rem;">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">An item</li>
+                  <li class="list-group-item">A second item</li>
+                  <li class="list-group-item">A third item</li>
+                </ul>
+              </div>
+            </div>
             <button id="searchBtn" class="btn btn-primary">Search</button>
           </div>
         </div>
@@ -30,6 +38,10 @@
 
       <!--Create a card for a display-->
       <div id="displayCard" class="row">
+
+      <!--Create the cards for 5 days display-->
+      <div id="fiveDays" class="row">
+       
 
 
       </div>
@@ -41,9 +53,7 @@
   </div>
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/plugin/timezone.min.js"
-    integrity="sha512-pslqxxHAYPCxaSeFSmXXxDkLejD5dbFVC66aiVq0z4v7VTJBU+wqcG1OpNh4p3MjS2D6NCwz/H2QmSc7dXxryg=="
-    crossorigin="anonymous"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
