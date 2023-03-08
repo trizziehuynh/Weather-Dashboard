@@ -3,6 +3,7 @@ document
   .getElementById("searchBtn")
   .addEventListener("click", function (event) {
     var cityName = document.getElementById("cityName").value;
+
     // get data from the API Weather
     var APIKey = "a68815855e046aa6fc830d61874f7c39";
     var APIUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${APIKey}`;
@@ -36,11 +37,26 @@ document
       .catch(function (err) {
         console.error(err);
       });
+
+    //get an array of locations that was stored in the localstorage.
+    var storedCities = JSON.parse(localStorage.getItem("storedCities")) || [];
+
+    storedCities.push(cityName);
+
+    localStorage.setItem("storedCities", JSON.stringify(storedCities));
+
+    searchCities(storedCities);
   });
 
-// function seachedHistory(cityName){
-//   var seached=document.createElement('p')
-// }
+function searchCities(storedCities) {
+  for (var i = 0; i < storedCities.length; i++) {
+    var searchedLine = document.createElement("li");
+    searchedLine.className = "list-group-item";
+    searchedLine.innerHTML = `${storedCities[i]}
+    `;
+    document.getElementById("searchedLists").append(searchedLine);
+  }
+}
 
 // Render the current temperature.
 function displayTemp(data) {
